@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "alabama",
+  "db": "mongodb://localhost/seshat"
+}
