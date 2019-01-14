@@ -24,22 +24,22 @@ export var CategoriesSchema =  new mongoose.Schema({
   name: {
     type: String,   
     required: true,
-    minlength: 5,
+    minlength: 2,
     maxlength: 50
   },
-  limitataion: {
+  limitation: {
      type: String,
   }
 });
 
 function validateCategories(categories) {
   const schema = {
-    name: Joi.string().required,
+    name: Joi.string().min(2).max(50).required,
     limitation: Joi.string()
   };
  
   return Joi.validate(categories, schema);
 }
 
-export const Client: mongoose.Model<ICategoriestModel> = mongoose.model<ICategoriestModel>("Categories", CategoriesSchema); 
+export const Categories: mongoose.Model<ICategoriestModel> = mongoose.model<ICategoriestModel>("Categories", CategoriesSchema); 
 export const validate: (any)=validateCategories ;

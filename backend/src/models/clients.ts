@@ -78,7 +78,7 @@ ClientSchema.methods.generateAuthToken = function() {
   return token;
 }
 
-function validateClient(client) {
+function validateClient(client) { 
   const schema = {
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).required(),
