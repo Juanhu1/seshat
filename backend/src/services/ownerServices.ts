@@ -1,5 +1,5 @@
 
-import {Owner, IOwnerModel} from '../models/owners'; 
+import {Owner, IOwnerModel, validate} from '../models/owners'; 
 import { ObjectID, ObjectId } from 'bson';
 
 export async function getOwnerService(ownerRecordId:ObjectId):Promise<IOwnerModel> {
@@ -12,5 +12,9 @@ export async function getClientAllBookService(cid:ObjectId):Promise<IOwnerModel[
 
 export async function addOwnerRecord(ownerRec:IOwnerModel):Promise<IOwnerModel> {
    let ownerToSave = new Owner(ownerRec);
-   return await ownerToSave.save();
+   const result=validate(ownerToSave) ;
+   if (result===null) 
+      return await ownerToSave.save();
+   else 
+      throw new Error(result) ;
 }

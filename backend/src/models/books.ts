@@ -9,12 +9,16 @@ export interface IBook {
   visible: string ;
   shared: string ;
   useSnowFlake: boolean ;
-  creationDate: Date ;
+  creationDate: number ;
   language: string ;
   price: string ;
   currency: string ;
   password: string ;
   alias: string ;  
+}
+
+export interface IBookWithSections extends IBook {
+  
 }
 
 export interface IBookModel extends IBook, mongoose.Document {

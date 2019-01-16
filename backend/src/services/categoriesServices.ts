@@ -1,5 +1,5 @@
 
-import {Categories, ICategoriestModel} from '../models/categories'; 
+import {Categories, ICategoriestModel, validate} from '../models/categories'; 
 
 export async function getCategoriesService(username):Promise<ICategoriestModel> {
   return await Categories.findOne({name:username}).exec();
@@ -11,5 +11,9 @@ export async function getAllCategoriesService():Promise<ICategoriestModel[]> {
 
 export async function addNewCategories(cat:ICategoriestModel):Promise<ICategoriestModel> {
    let categoriesToSave = new Categories(cat);
-   return await categoriesToSave.save();
+   const result=validate(categoriesToSave) ;
+   if (result===null ) 
+      return await categoriesToSave.save();
+   else
+      throw new Error(result) ;
 }
