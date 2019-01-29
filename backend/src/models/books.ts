@@ -19,7 +19,7 @@ export interface IBook {
 
 export interface IBookWithSections extends IBook {
   
-}
+} 
 
 export interface IBookModel extends IBook, mongoose.Document {
   //generateAuthToken():string ;
@@ -62,13 +62,14 @@ export var BookSchema =  new mongoose.Schema({
 function validateBook(owner) {
   const schema = {
     title: Joi.string().required(),
-    visible: Joi.string(),
+    shared: Joi.string().allow(''),
+    visible: Joi.string().allow(''),
     useSnowFlake: Joi.boolean(),
-    creationDate: Joi.Date(),
-    language: Joi.string(), 
-    price: Joi.string(),
-    currency: Joi.string(),
-    password: Joi.string()    
+    creationDate: Joi.any(),
+    language: Joi.string().allow(''), 
+    price: Joi.string().allow(''),
+    currency: Joi.string().allow(''),
+    password: Joi.string().allow('')    
   };
  
   return Joi.validate(owner, schema);

@@ -15,7 +15,8 @@
       "node_modules/@types"
     ],
     "types": [
-      "jquery"
+      "jquery",
+      "node"
     ],
     "lib": [
       "es2017",

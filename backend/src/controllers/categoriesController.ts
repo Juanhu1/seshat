@@ -11,11 +11,11 @@ export async function getAllCategories():Promise<ICategoriestModel[]> {
    return await getAllCategoriesService() ;
 }
 
-export async function addCategories( userToAdd):Promise<ICategoriestModel> {
-   const client:ICategoriestModel=await getCategoriesService(userToAdd.name)
+export async function addCategories( catToAdd):Promise<ICategoriestModel> {
+   const client:ICategoriestModel=await getCategoriesService(catToAdd.name)
    if (client) {
       throw new Error('Categories already registered.');
    } else {
-      return await addNewCategories(userToAdd) ;
+      return await addNewCategories(catToAdd) ;
    }
 }

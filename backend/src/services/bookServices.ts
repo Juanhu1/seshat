@@ -4,7 +4,7 @@ import {Owner, IOwnerModel, validate as ownerValidate, IOwners} from '../models/
 
 import { ObjectID, ObjectId } from 'bson';
 import * as mongoose from 'mongoose';
-import {Fawn} from 'fawn' ;
+import * as Fawn from 'fawn' ;
 
 Fawn.init(mongoose) ;
 
@@ -14,17 +14,18 @@ export async function getBookService(bookId:ObjectId):Promise<IBookModel> {
 
 export async function addBookService(clientId:ObjectId, book:IBook):Promise<IBook> {
    let bookToSave = new Book(book);
-   delete bookToSave.alias ;
-   const result=bookValidate(bookToSave) ;
-   if (result===null) {
+   let alias:string=book.alias ;
+   delete book.alias ;
+   const result=bookValidate(book) ;
+   if (result.error===null) {
       bookToSave=await bookToSave.save() ;
       let owner:IOwners = {
          clientId:clientId,
          bookId: bookToSave._id,
-         alias: book.alias 
+         alias: alias
       }
       const oresult=ownerValidate(owner) ;
-      if (oresult===null) {
+      if (oresult.error===null) {
           let ownerToSave=new Owner(owner)
           return  bookToSave;
       }

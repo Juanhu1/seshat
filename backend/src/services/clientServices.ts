@@ -15,8 +15,8 @@ export async function addNewClientAndReturnAuthTokenService(client:IClientModel)
    const salt = await bcrypt.genSalt(10);
    client.password = await bcrypt.hash(client.password, salt);
    let clientToSave = new Client(client);
-   const result = validate(clientToSave) ;
-   if (result===null) { 
+   const result = validate(client) ;
+   if (result.error===null) { 
       await clientToSave.save();
    }
    else {

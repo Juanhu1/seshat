@@ -20,9 +20,8 @@ export async function getBooks(clientId:ObjectId):Promise<IBook[]> {
   return books ;
 }
 
-export async function createBook(clientId:ObjectId, title:string, visible:string, 
-                                 shared:string, language:string, alias:string):Promise<IBook> {
-   let book:IBook = {
+export async function createBook(clientId:ObjectId, bookToAdd:IBook ):Promise<IBook> {
+  /* let book:IBook = {
       title: title,
       visible: visible,
       shared: shared,
@@ -33,11 +32,8 @@ export async function createBook(clientId:ObjectId, title:string, visible:string
       currency: "HUF",
       password:"",
       alias:"alma"
-   }
-   addBookService(clientId, book) ;
-    
-
- 
+   }*/
+   return addBookService(clientId, bookToAdd) ;
 }
 
 /*

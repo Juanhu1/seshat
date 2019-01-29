@@ -1,12 +1,12 @@
 
 const Joi = require('joi'); 
 import * as mongoose from 'mongoose';
-import { ObjectID, ObjectId } from 'bson';
+//import { ObjectID } from 'bson';
 const config= require( 'config' );
 
 export interface IOwners {
-  clientId:ObjectId ;
-  bookId: ObjectId ;
+  clientId:String ;
+  bookId: String ;
   alias: string ;
 }
 
@@ -17,15 +17,15 @@ export interface IOwnerModel extends IOwners, mongoose.Document {
 
 export var OwnerSchema =  new mongoose.Schema({ 
   clientId: {
-    type: ObjectId,   
+    type: String,   
     required: true 
   },
   bookId: {
-     type: Number,
+     type: String,
      required: true 
   },
   alias: {
-    type: ObjectId,
+    type: String,
     minlength: 2,
     maxlength: 255
   } 
@@ -34,7 +34,7 @@ export var OwnerSchema =  new mongoose.Schema({
 function validateOwner(owner) {
   const schema = {
     alias: Joi.string().min(2).max(255).required(),
-    bookId: Joi.string().required(),
+    bookId: Joi.any().required(),
     clientId: Joi.string().required() 
   };
  
