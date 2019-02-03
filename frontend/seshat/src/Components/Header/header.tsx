@@ -1,29 +1,15 @@
 import * as React from 'react';
-
+import PrimaryAppBar from "./primaryAppBar" ;
 
 interface Props {
-   name:String,
-   enthusiasmLevel:number
-}
-
-function getExclamationMarks(numChars: number) {
-    return Array(numChars + 1).join('!');
+   brand: string ;
 }
 
 export default class Hello extends React.Component<Props, object> {
     render() {
-      const { name, enthusiasmLevel = 1 } = this.props;
-  
-      if (enthusiasmLevel <= 0) {
-        throw new Error('You could be a little more enthusiastic. :D');
-      }
-  
+      const { brand } = this.props;  
       return (
-        <div className="hello">
-          <div className="greeting">
-            Hello {name + getExclamationMarks(enthusiasmLevel)}
-          </div>
-        </div>
+        <PrimaryAppBar brand={brand}></PrimaryAppBar>
       );
     }
   }
