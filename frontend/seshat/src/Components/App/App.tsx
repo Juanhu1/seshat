@@ -16,6 +16,8 @@ import {
 //https://github.com/Microsoft/TypeScript-React-Starter
 //https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
 //const dashboardRoutes:any = [];
+https://reactjsexample.com/react-side-nav-component/
+
 
 class App extends React.Component {
   public render() {
